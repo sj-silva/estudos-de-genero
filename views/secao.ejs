@@ -1,18 +1,68 @@
 <%- include('partials/head') %>
+
+<header class="bg-body-tertiary border-bottom">
+  <div class="container py-5">
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="/">Início</a></li>
+        <li class="breadcrumb-item active" aria-current="page"><%= section.tag %></li>
+      </ol>
+    </nav>
+    <p class="text-uppercase small fw-bold text-body-secondary mb-1">
+      Tema <%= section.number %> de <%= sections.length %>
+    </p>
+    <h1 class="display-5 fw-bold"><%= section.title %></h1>
+    <p class="text-body-secondary mb-0">
+      <i class="bi bi-clock me-1"></i><%= section.minutes %> min de leitura
+    </p>
+  </div>
+</header>
+
 <div class="container py-5">
-  <p class="text-uppercase small fw-bold text-body-secondary mb-1">
-  Tema <%= section.number %> de <%= sections.length %>
-</p>
-  <h1 class="fw-bold"><%= section.title %></h1>
-  <p class="text-body-secondary"><%= section.minutes %> min de leitura</p>
+  <div class="row g-5">
 
-  <% section.paragraphs.forEach(p => { %>
-    <p><%- p %></p>
-  <% }) %>
+    <article class="col-lg-8">
+      <% section.paragraphs.forEach((p, i) => { %>
+        <p class="<%= i === 0 ? 'lead' : '' %>"><%- p %></p>
+      <% }) %>
 
-  <div class="d-flex justify-content-between mt-5">
-    <% if (prev) { %><a href="/secao/<%= prev.slug %>">← <%= prev.title %></a><% } else { %><span></span><% } %>
-    <% if (next) { %><a href="/secao/<%= next.slug %>"><%= next.title %> →</a><% } %>
+      <nav class="row g-3 mt-5 pt-4 border-top" aria-label="Navegação entre temas">
+        <div class="col-md-6">
+          <% if (prev) { %>
+            <a class="card h-100 text-decoration-none" href="/secao/<%= prev.slug %>">
+              <div class="card-body">
+                <small class="text-body-secondary"><i class="bi bi-arrow-left"></i> Anterior</small>
+                <div class="fw-semibold"><%= prev.title %></div>
+              </div>
+            </a>
+          <% } %>
+        </div>
+        <div class="col-md-6">
+          <% if (next) { %>
+            <a class="card h-100 text-decoration-none text-md-end" href="/secao/<%= next.slug %>">
+              <div class="card-body">
+                <small class="text-body-secondary">Próximo <i class="bi bi-arrow-right"></i></small>
+                <div class="fw-semibold"><%= next.title %></div>
+              </div>
+            </a>
+          <% } %>
+        </div>
+      </nav>
+    </article>
+
+    <aside class="col-lg-4 d-none d-lg-block">
+      <div class="sticky-top" style="top: 1rem">
+        <h2 class="h6 text-uppercase text-body-secondary mb-3">Neste site</h2>
+        <div class="list-group list-group-flush small">
+          <% sections.forEach(s => { %>
+            <a class="list-group-item list-group-item-action <%= s.slug === section.slug ? 'active' : '' %>"
+               href="/secao/<%= s.slug %>"><%= s.number %>. <%= s.title %></a>
+          <% }) %>
+        </div>
+      </div>
+    </aside>
+
   </div>
 </div>
+
 <%- include('partials/foot') %>
