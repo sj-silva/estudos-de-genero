@@ -1,0 +1,18 @@
+<%- include('partials/head') %>
+<div class="container py-5">
+  <p class="text-uppercase small fw-bold text-body-secondary mb-1">
+  Tema <%= section.number %> de <%= sections.length %>
+</p>
+  <h1 class="fw-bold"><%= section.title %></h1>
+  <p class="text-body-secondary"><%= section.minutes %> min de leitura</p>
+
+  <% section.paragraphs.forEach(p => { %>
+    <p><%- p %></p>
+  <% }) %>
+
+  <div class="d-flex justify-content-between mt-5">
+    <% if (prev) { %><a href="/secao/<%= prev.slug %>">← <%= prev.title %></a><% } else { %><span></span><% } %>
+    <% if (next) { %><a href="/secao/<%= next.slug %>"><%= next.title %> →</a><% } %>
+  </div>
+</div>
+<%- include('partials/foot') %>
