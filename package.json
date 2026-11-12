@@ -1,7 +1,6 @@
 {
   "name": "estudos-de-genero",
   "version": "1.0.0",
-  "description": "",
   "main": "index.js",
   "scripts": {
     "start": "node server.js",
@@ -15,10 +14,21 @@
     "feminist-theory",
     "educacao"
   ],
+  "description": "Site sobre estudos de gênero e teorias feministas (Node.js + Express + EJS + Bootstrap)",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sj-silva/estudos-de-genero.git"
+  },
+  "bugs": {
+    "url": "https://github.com/sj-silva/estudos-de-genero/issues"
+  },
+  "homepage": "https://github.com/sj-silva/estudos-de-genero#readme",
   "author": "Meyre Silva",
   "license": "MIT",
   "type": "module",
   "dependencies": {
+    "bootstrap": "^5.3.9",
+    "bootstrap-icons": "^1.13.2",
     "ejs": "^7.0.2",
     "express": "^5.3.0"
   }
