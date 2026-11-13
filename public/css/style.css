@@ -1,3 +1,103 @@
-h1 {
-  color: #7b2d8e;
+/* ---------- Cores e variáveis ---------- */
+:root {
+  --brand: #7b2d8e;
+  --brand-2: #c2307a;
+  --serif: Georgia, "Iowan Old Style", "Palatino Linotype", Palatino, serif;
+
+  /* Links: o Bootstrap 5.3 usa as versões "-rgb" */
+  --bs-link-color-rgb: 123, 45, 142;
+  --bs-link-hover-color-rgb: 194, 48, 122;
+}
+[data-bs-theme="dark"] {
+  --bs-link-color-rgb: 212, 155, 230;
+  --bs-link-hover-color-rgb: 255, 200, 87;
+}
+
+h1,
+h2,
+h3,
+.navbar-brand {
+  font-family: var(--serif);
+}
+
+/* ---------- Componentes do Bootstrap na nossa cor ---------- */
+.btn-primary {
+  --bs-btn-bg: var(--brand);
+  --bs-btn-border-color: var(--brand);
+  --bs-btn-hover-bg: #62246f;
+  --bs-btn-hover-border-color: #62246f;
+  --bs-btn-active-bg: #62246f;
+  --bs-btn-active-border-color: #62246f;
+}
+.list-group {
+  --bs-list-group-active-bg: var(--brand);
+  --bs-list-group-active-border-color: var(--brand);
+}
+
+/* ---------- Capa (home e cabeçalho das seções) ---------- */
+.hero {
+  background: linear-gradient(135deg, #2b1055 0%, #7b2d8e 55%, #c2307a 100%);
+}
+.breadcrumb-white {
+  --bs-breadcrumb-divider-color: rgba(255, 255, 255, 0.6);
+  --bs-breadcrumb-item-active-color: rgba(255, 255, 255, 0.6);
+}
+.breadcrumb-white a {
+  color: rgba(255, 255, 255, 0.85);
+}
+
+/* ---------- Cards ---------- */
+.topic-card {
+  transition:
+    transform 0.25s,
+    box-shadow 0.25s;
+}
+.topic-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 1rem 2rem rgba(43, 16, 85, 0.18) !important;
+}
+
+/* ---------- Texto do artigo ---------- */
+.article {
+  font-family: var(--serif);
+  font-size: 1.15rem;
+  line-height: 1.85;
+  max-width: 46rem;
+}
+.article p {
+  margin-bottom: 1.4rem;
+}
+.article .lead {
+  font-size: 1.3rem;
+  font-weight: 400;
+}
+.article .lead::first-letter {
+  float: left;
+  font-size: 4.2rem;
+  line-height: 0.8;
+  padding: 0.35rem 0.6rem 0 0;
+  font-weight: 700;
+  color: var(--brand-2);
+}
+.article .card {
+  font-family: var(--bs-body-font-family);
+}
+
+/* ---------- Barra de progresso e botão de topo ---------- */
+.progress-bar-top {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 4px;
+  width: 0;
+  z-index: 2000;
+  background: linear-gradient(90deg, #ffc857, var(--brand-2));
+}
+#topo {
+  position: fixed;
+  right: 1.25rem;
+  bottom: 1.25rem;
+  width: 3rem;
+  height: 3rem;
+  z-index: 1000;
 }

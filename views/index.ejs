@@ -1,21 +1,45 @@
 <%- include('partials/head') %>
 
-<header class="bg-body-tertiary border-bottom">
+<header class="hero text-white">
   <div class="container py-5">
     <h1 class="display-4 fw-bold"><%= site.title %></h1>
     <p class="lead mb-4"><%= site.subtitle %></p>
-    <a href="/secao/<%= sections[0].slug %>" class="btn btn-primary btn-lg">
+    <a href="/secao/<%= sections[0].slug %>" class="btn btn-light btn-lg">
       <i class="bi bi-book me-2"></i>Começar a leitura
     </a>
   </div>
 </header>
+<%
+  const tags = [...new Set(sections.map(s => s.tag))];
+%>
+<section id="temas" class="container py-5">
+  <div class="row align-items-end gy-3 mb-4">
+    <div class="col-md-6">
+      <h2 class="fw-bold mb-1">Temas</h2>
+      <p class="text-body-secondary mb-0">Escolha um tema ou busque por palavra-chave.</p>
+    </div>
+    <div class="col-md-6">
+      <div class="input-group">
+        <span class="input-group-text"><i class="bi bi-search"></i></span>
+        <input id="busca" type="search" class="form-control"
+               placeholder="Buscar (ex.: hooks, fronteira, liberalismo)" aria-label="Buscar temas">
+      </div>
+    </div>
+  </div>
 
-<section class="container py-5">
-  <h2 class="fw-bold mb-4">Temas</h2>
-  <div class="row g-4">
+  <div class="d-flex flex-wrap gap-2 mb-4" id="filtros" role="group" aria-label="Filtrar por categoria">
+    <button class="btn btn-sm btn-primary" data-tag="todos" type="button">Todos</button>
+    <% tags.forEach(t => { %>
+      <button class="btn btn-sm btn-outline-primary" data-tag="<%= t %>" type="button"><%= t %></button>
+    <% }) %>
+  </div>
+
+  <div class="row g-4" id="grade">
     <% sections.forEach(s => { %>
-      <div class="col-md-6 col-lg-4">
-        <div class="card h-100 shadow-sm">
+      <div class="col-md-6 col-lg-4 card-col"
+           data-tag="<%= s.tag %>"
+           data-text="<%= (s.title + ' ' + s.excerpt).toLowerCase() %>">
+        <div class="card topic-card h-100 shadow-sm">
           <div class="card-body d-flex flex-column">
             <div class="d-flex justify-content-between small text-body-secondary mb-2">
               <span class="text-uppercase fw-semibold"><%= s.tag %></span>
@@ -29,6 +53,8 @@
       </div>
     <% }) %>
   </div>
+
+  <p id="semResultado" class="text-center text-body-secondary py-5 d-none">Nenhum tema encontrado.</p>
 </section>
 
 <%- include('partials/foot') %>

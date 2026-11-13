@@ -1,27 +1,27 @@
 <%- include('partials/head') %>
-
-<header class="bg-body-tertiary border-bottom">
+<%- include('partials/head') %>
+<div class="progress-bar-top" id="progresso" role="progressbar" aria-label="Progresso de leitura"></div>
+<header class="hero text-white">
   <div class="container py-5">
     <nav aria-label="breadcrumb">
-      <ol class="breadcrumb">
+      <ol class="breadcrumb breadcrumb-white">
         <li class="breadcrumb-item"><a href="/">Início</a></li>
         <li class="breadcrumb-item active" aria-current="page"><%= section.tag %></li>
       </ol>
     </nav>
-    <p class="text-uppercase small fw-bold text-body-secondary mb-1">
+    <p class="text-uppercase small fw-bold mb-1 opacity-75">
       Tema <%= section.number %> de <%= sections.length %>
     </p>
     <h1 class="display-5 fw-bold"><%= section.title %></h1>
-    <p class="text-body-secondary mb-0">
+    <p class="mb-0 opacity-75">
       <i class="bi bi-clock me-1"></i><%= section.minutes %> min de leitura
     </p>
   </div>
 </header>
-
 <div class="container py-5">
   <div class="row g-5">
 
-    <article class="col-lg-8">
+    <article class="col-lg-8 article">
       <% section.paragraphs.forEach((p, i) => { %>
         <p class="<%= i === 0 ? 'lead' : '' %>"><%- p %></p>
       <% }) %>
@@ -65,4 +65,7 @@
   </div>
 </div>
 
+<button id="topo" class="btn btn-primary rounded-circle shadow d-none" type="button" aria-label="Voltar ao topo">
+  <i class="bi bi-arrow-up"></i>
+</button>
 <%- include('partials/foot') %>
