@@ -136,3 +136,12 @@ h3,
     rgba(20, 8, 40, 0.45)
   );
 }
+
+/* ---------- Avatar ---------- */
+.avatar {
+  width: 96px;
+  height: 96px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid var(--brand);
+}

@@ -75,6 +75,16 @@ app.get("/secao/:slug", (req, res, next) => {
   });
 });
 
+app.get("/sobre", (req, res) => {
+  res.render("sobre", {
+    page: {
+      title: `Sobre · ${site.title}`,
+      description:
+        "Sobre o projeto, a autoria dos textos e as tecnologias do site.",
+    },
+  });
+});
+
 // O 404 sempre por último
 app.use((req, res) => {
   res.status(404).render("404", {
