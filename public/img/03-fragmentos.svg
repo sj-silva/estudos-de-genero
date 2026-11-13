@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" role="img" aria-hidden="true">
+<defs><linearGradient id="g3" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#1d3557"/><stop offset="1" stop-color="#7b2d8e"/></linearGradient></defs>
+<rect width="800" height="450" fill="url(#g3)"/>
+<circle cx="700" cy="60" r="150" fill="#fff" opacity=".07"/><circle cx="90" cy="400" r="190" fill="#fff" opacity=".06"/>
+
+  <g><rect x="120" y="80" width="150" height="110" rx="10" fill="#ff6b6b" opacity=".88" transform="rotate(-8 195 135)"/><rect x="290" y="60" width="120" height="90" rx="10" fill="#ffc857" opacity=".88" transform="rotate(6 350 105)"/><rect x="420" y="100" width="160" height="130" rx="10" fill="#2ec4b6" opacity=".88" transform="rotate(-4 500 165)"/><rect x="600" y="70" width="110" height="110" rx="10" fill="#fff7ec" opacity=".88" transform="rotate(9 655 125)"/><rect x="170" y="230" width="130" height="120" rx="10" fill="#fff7ec" opacity=".88" transform="rotate(5 235 290)"/><rect x="330" y="230" width="150" height="100" rx="10" fill="#ff6b6b" opacity=".88" transform="rotate(-7 405 280)"/><rect x="510" y="260" width="140" height="110" rx="10" fill="#ffc857" opacity=".88" transform="rotate(4 580 315)"/><rect x="660" y="240" width="90" height="120" rx="10" fill="#2ec4b6" opacity=".88" transform="rotate(-9 705 300)"/></g>
+  <g stroke="#fff7ec" stroke-width="4" stroke-dasharray="10 12" opacity=".7"><path d="M60 215h680M400 30v390"/></g>
+</svg>

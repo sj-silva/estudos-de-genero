@@ -2,11 +2,18 @@
 
 <header class="hero text-white">
   <div class="container py-5">
-    <h1 class="display-4 fw-bold"><%= site.title %></h1>
-    <p class="lead mb-4"><%= site.subtitle %></p>
-    <a href="/secao/<%= sections[0].slug %>" class="btn btn-light btn-lg">
-      <i class="bi bi-book me-2"></i>Começar a leitura
-    </a>
+    <div class="row align-items-center gy-4">
+      <div class="col-lg-7">
+        <h1 class="display-4 fw-bold"><%= site.title %></h1>
+        <p class="lead mb-4"><%= site.subtitle %></p>
+        <a href="/secao/<%= sections[0].slug %>" class="btn btn-light btn-lg">
+          <i class="bi bi-book me-2"></i>Começar a leitura
+        </a>
+      </div>
+      <div class="col-lg-5 d-none d-lg-block">
+        <img class="hero-art shadow-lg" src="/img/08-interseccao.svg" alt="" width="800" height="450">
+      </div>
+    </div>
   </div>
 </header>
 <%
@@ -40,6 +47,7 @@
            data-tag="<%= s.tag %>"
            data-text="<%= (s.title + ' ' + s.excerpt).toLowerCase() %>">
         <div class="card topic-card h-100 shadow-sm">
+          <img src="/img/<%= s.img %>" class="card-img-top" alt="" loading="lazy" width="800" height="450">
           <div class="card-body d-flex flex-column">
             <div class="d-flex justify-content-between small text-body-secondary mb-2">
               <span class="text-uppercase fw-semibold"><%= s.tag %></span>
