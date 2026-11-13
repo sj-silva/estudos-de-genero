@@ -2,6 +2,8 @@ import express from "express";
 import { fileURLToPath } from "node:url";
 import { dirname, join } from "node:path";
 import { readFileSync } from "node:fs";
+import helmet from "helmet";
+import compression from "compression";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const app = express();
@@ -12,6 +14,10 @@ const site = {
   subtitle:
     "Teorias feministas, ondas, epistemologias e perspectivas do Sul-Global",
 };
+
+app.disable("x-powered-by");
+app.use(helmet());
+app.use(compression());
 
 app.set("view engine", "ejs");
 app.set("views", join(__dirname, "views"));
@@ -29,7 +35,12 @@ app.use(
   "/vendor/icons",
   express.static(join(__dirname, "node_modules/bootstrap-icons/font")),
 );
-app.use(express.static(join(__dirname, "public")));
+
+app.use(
+  express.static(join(__dirname, "public"), {
+    maxAge: process.env.NODE_ENV === "production" ? "7d" : 0,
+  }),
+);
 
 app.use((req, res, next) => {
   res.locals.site = site;
@@ -68,6 +79,13 @@ app.get("/secao/:slug", (req, res, next) => {
 app.use((req, res) => {
   res.status(404).render("404", {
     page: { title: `Página não encontrada · ${site.title}`, description: "" },
+  });
+});
+
+app.use((err, req, res, next) => {
+  console.error(err);
+  res.status(500).render("erro", {
+    page: { title: `Erro · ${site.title}`, description: "" },
   });
 });
 
