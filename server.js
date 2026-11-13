@@ -8,6 +8,10 @@ import compression from "compression";
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const app = express();
 const PORT = process.env.PORT || 3000;
+const SITE_URL = (process.env.SITE_URL || `http://localhost:${PORT}`).replace(
+  /\/$/,
+  "",
+);
 
 const site = {
   title: "Estudos de Gênero",
@@ -44,8 +48,9 @@ app.use(
 
 app.use((req, res, next) => {
   res.locals.site = site;
-  res.locals.sections = sections; // NOVO
+  res.locals.sections = sections;
   res.locals.path = req.path;
+  res.locals.siteUrl = SITE_URL;
   next();
 });
 
@@ -83,6 +88,21 @@ app.get("/sobre", (req, res) => {
         "Sobre o projeto, a autoria dos textos e as tecnologias do site.",
     },
   });
+});
+
+app.get("/robots.txt", (req, res) => {
+  res
+    .type("text/plain")
+    .send(`User-agent: *\nAllow: /\n\nSitemap: ${SITE_URL}/sitemap.xml\n`);
+});
+
+app.get("/sitemap.xml", (req, res) => {
+  const urls = ["/", "/sobre", ...sections.map((s) => `/secao/${s.slug}`)];
+  const xml = `<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+${urls.map((u) => `  <url><loc>${SITE_URL}${u}</loc></url>`).join("\n")}
+</urlset>`;
+  res.type("application/xml").send(xml);
 });
 
 // O 404 sempre por último
